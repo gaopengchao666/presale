@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="cn.com.dao.PreSaleMapper">
+	 
+     <resultMap type="cn.com.entity.PreSale" id="PreSaleMap">  
+        <id property="id" column="ID" />  
+        <result property="certificate" column="CERTIFICATE" />  
+        <result property="projectName" column="PROJECT_NAME" />
+        <result property="location" column="LOCATION" />
+        <result property="developer" column="DEVELOPER" />
+        <result property="saleable"  column="SALEABLE"/>
+        <result property="createTime"  column="CREATE_TIME"/>
+    </resultMap>
+     
+    <select id="queryPreSales" resultMap="PreSaleMap">
+        select 
+            ID,CERTIFICATE,PROJECT_NAME,
+            LOCATION,DEVELOPER,SALEABLE,CREATE_TIME
+        from tbl_presale
+    </select>
+</mapper>
