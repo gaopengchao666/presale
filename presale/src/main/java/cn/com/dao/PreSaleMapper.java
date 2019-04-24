@@ -11,4 +11,5 @@ import cn.com.entity.PreSale;
 public interface PreSaleMapper
 {
     List<PreSale> queryPreSales();
+    int insertPreSales(List<PreSale> presales);
 }

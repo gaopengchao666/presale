@@ -18,4 +18,13 @@
             LOCATION,DEVELOPER,SALEABLE,CREATE_TIME
         from tbl_presale
     </select>
+    
+    <insert id="insertPreSales" parameterType="List">
+        insert into tbl_presale (CERTIFICATE,PROJECT_NAME,LOCATION,DEVELOPER,SALEABLE,CREATE_TIME)
+        values 
+        <foreach collection="list" item="item" separator=",">
+            (#{item.certificate},#{item.projectName},#{item.location},
+            #{item.developer},#{item.saleable},#{item.createTime})
+        </foreach>
+    </insert>
 </mapper>

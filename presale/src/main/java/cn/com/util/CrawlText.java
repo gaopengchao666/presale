@@ -9,6 +9,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import cn.com.entity.PreSale;
+
 public class CrawlText {
 
     /***
@@ -22,30 +24,34 @@ public class CrawlText {
      *            网站链接
      * @throws IOException
      */
-    public static void getText(boolean autoDownloadFile, boolean Multithreading, String Url) throws IOException {
-
-        //String rule = "abs:href";
-
-        List<String> urlList = new ArrayList<String>();
-            
+    public static List<PreSale> getText(boolean autoDownloadFile, boolean Multithreading, String Url) throws IOException {
         Document document = Jsoup.connect(Url)
                 .timeout(8000)
                 .ignoreContentType(true)
                 .userAgent("Mozilla\" to \"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0)")
                 .get();
-        System.out.println(document.toString());
-        //Elements urlNode = document.select("a[href^=Lpb.aspx]");
-        Elements urlNode = document.select(".ygsf_table1 tr");
-        
-        for (Element element : urlNode) {
-            //urlList.add(element.attr(rule));
-            urlList.add(element.toString());
+        System.out.println(document);
+        Elements trs = document.select(".ygsf_table1 tr:gt(0)");
+        List<PreSale> presales = new ArrayList<PreSale>();
+        for (Element tr : trs) {
+            PreSale presale = new PreSale();
+            Elements tds = tr.select("td");
+            if (tds.get(0).select("a").size() > 0) 
+            {
+                presale.setCertificate(tds.get(0).select("a").html());
+            }
+            if (tds.get(1).select("a").size() > 0)
+            {
+                presale.setProjectName(tds.get(1).select("a").html());
+            }
+            presale.setLocation(tds.get(2).html());
+            presale.setDeveloper(tds.get(3).html());
+            presale.setSaleable(tds.get(4).html());
+            presale.setCreateTime(tds.get(5).html());
+            presales.add(presale);
         }
-        
-        System.out.println(urlList.toString());
+        return presales;
         //CrawTextThread crawTextThread = new CrawTextThread(urlList);
         //crawTextThread.start();
-        
     }
-
 }
