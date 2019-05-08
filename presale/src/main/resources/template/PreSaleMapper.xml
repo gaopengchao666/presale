@@ -27,4 +27,8 @@
             #{item.developer},#{item.saleable},#{item.createTime})
         </foreach>
     </insert>
+    
+    <select id="queryMaxCertificate" resultType="String">
+        select IFNULL(max(CERTIFICATE),0) from tbl_presale
+    </select>
 </mapper>

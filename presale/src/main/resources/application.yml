@@ -5,7 +5,7 @@ mybatis:
 
 spring: 
     datasource: 
-        url: jdbc:mysql://192.168.16.239:3306/test
+        url: jdbc:mysql://192.168.16.239:3306/cms-2019
         username: root
         password: root
         driver-class-name: com.mysql.jdbc.Driver

@@ -18,7 +18,8 @@ public class Snippet
         try
         {
             // 西安预售证查询
-            CrawlText.getText(true, true,"http://fgj.xa.gov.cn/ygsf/index.aspx");
+            //List<PreSale> preSales = CrawlText.getText("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
+            //System.out.println(preSales);
             // 商品房价格公示
             // CrawlText.getText(true, true,
             // "http://wjj.xa.gov.cn/ptl/def/def/index_1285_3936.jsp?recid=4416419");

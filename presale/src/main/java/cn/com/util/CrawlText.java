@@ -11,8 +11,32 @@ import org.jsoup.select.Elements;
 
 import cn.com.entity.PreSale;
 
-public class CrawlText {
+public class CrawlText
+{
 
+    /**
+     * 获取预售证所有页数
+     * @param Url
+     * @return
+     */
+    public static int getPreSalePage(String Url)
+    {
+        Document document = null;
+        try
+        {
+            document = Jsoup.connect(Url).timeout(8000).ignoreContentType(true)
+                    .userAgent("Mozilla\" to \"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0)").get();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        Elements totalPageA = document.select(".ygsf_pager>a:eq(7)");
+        String totalPageUtl = totalPageA.attr("href");
+        int totalPage = Integer.parseInt(totalPageUtl.split("=")[1]);
+        return totalPage;
+    }
+    
     /***
      * 获取文本
      * 
@@ -24,19 +48,25 @@ public class CrawlText {
      *            网站链接
      * @throws IOException
      */
-    public static List<PreSale> getText(boolean autoDownloadFile, boolean Multithreading, String Url) throws IOException {
-        Document document = Jsoup.connect(Url)
-                .timeout(8000)
-                .ignoreContentType(true)
-                .userAgent("Mozilla\" to \"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0)")
-                .get();
-        System.out.println(document);
+    public static List<PreSale> getText(String Url)
+    {
+        Document document = null;
+        try
+        {
+            document = Jsoup.connect(Url).timeout(8000).ignoreContentType(true)
+                    .userAgent("Mozilla\" to \"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0)").get();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
         Elements trs = document.select(".ygsf_table1 tr:gt(0)");
         List<PreSale> presales = new ArrayList<PreSale>();
-        for (Element tr : trs) {
+        for (Element tr : trs)
+        {
             PreSale presale = new PreSale();
             Elements tds = tr.select("td");
-            if (tds.get(0).select("a").size() > 0) 
+            if (tds.get(0).select("a").size() > 0)
             {
                 presale.setCertificate(tds.get(0).select("a").html());
             }
@@ -51,7 +81,5 @@ public class CrawlText {
             presales.add(presale);
         }
         return presales;
-        //CrawTextThread crawTextThread = new CrawTextThread(urlList);
-        //crawTextThread.start();
     }
 }
