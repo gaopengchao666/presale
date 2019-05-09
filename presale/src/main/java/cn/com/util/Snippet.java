@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.jsoup.nodes.Document;
+
 /**
  * @author gaopengchao 2019年3月26日
  */
@@ -17,6 +19,8 @@ public class Snippet
     {
         try
         {
+            Document text = new CrawlText().getText("http://fgj.xa.gov.cn/ygsf/index.aspx");
+            System.out.println(text);
             // 西安预售证查询
             //List<PreSale> preSales = CrawlText.getText("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
             //System.out.println(preSales);

@@ -11,4 +11,11 @@ import cn.com.entity.PreSale;
 public interface PreSaleService
 {
     public List<PreSale> queryPreSales();
+    
+    public List<PreSale> getPreSales(String url);
+
+    /**
+     * @param sales
+     */
+    public void insertPreSales(List<PreSale> sales);
 }
