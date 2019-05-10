@@ -21,6 +21,32 @@ CREATE TABLE `tbl_presale` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of tbl_presale
+-- Table structure for tbl_price
 -- ----------------------------
-INSERT INTO `tbl_presale` VALUES ('1', '2019096', '万达﹒西安one项目8地块', '西安市高新区科技七路以南，木塔一路以西', '陕西锦世达置业有限公司', '5幢,7幢', '2019-03-26');
+DROP TABLE IF EXISTS `tbl_price`;
+CREATE TABLE `tbl_price` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `PROJECT_ID` int(11) DEFAULT NULL COMMENT '项目ID',
+  `SORT` int(11) DEFAULT NULL COMMENT '序号',
+  `ROOM_NO` varchar(50) DEFAULT NULL COMMENT '房间号',
+  `AREA` double(10,4) DEFAULT NULL COMMENT '面积',
+  `UNIT_PRICE` decimal(10,4) DEFAULT NULL COMMENT '房屋单价',
+  `TOTAL_PRICE` decimal(10,4) DEFAULT NULL COMMENT '房屋总价',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Table structure for tbl_project
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_project`;
+CREATE TABLE `tbl_project` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `BATCH` varchar(255) DEFAULT NULL COMMENT '所属批次',
+  `PROJECT_NAME` varchar(255) DEFAULT NULL COMMENT '项目名称',
+  `SALEABLE` varchar(255) DEFAULT NULL COMMENT '申报楼幢',
+  `FLOORS` varchar(50) DEFAULT NULL COMMENT '总层数',
+  `ADDRESS` varchar(255) DEFAULT NULL COMMENT '地址',
+  `DECORATION` varchar(20) DEFAULT NULL COMMENT '装修标准',
+  `PRICE_URL` varchar(255) DEFAULT NULL COMMENT '项目价格URL',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

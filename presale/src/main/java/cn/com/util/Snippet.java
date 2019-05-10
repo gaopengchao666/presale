@@ -19,23 +19,15 @@ public class Snippet
     {
         try
         {
-            Document text = new CrawlText().getText("http://fgj.xa.gov.cn/ygsf/index.aspx");
+            //查询第一页项目
+            /*Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/index");
+            System.out.println(text);*/
+            //查询第一个项目价格列表
+            Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/price?id=8a901c2869db98390169dbee41ef07f0");
             System.out.println(text);
             // 西安预售证查询
-            //List<PreSale> preSales = CrawlText.getText("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
+            //List<PreSale> preSales = new CrawlText().getText("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
             //System.out.println(preSales);
-            // 商品房价格公示
-            // CrawlText.getText(true, true,
-            // "http://wjj.xa.gov.cn/ptl/def/def/index_1285_3936.jsp?recid=4416419");
-            // 商品住房价格公示项目名单（2019年第6批）（总第八十二批）
-            // CrawlText.getText(true, true,
-            // "http://wjj.xa.gov.cn/ptl/def/def/index_1285_3892.jsp?trid=3108482");
-            // 价格查看附件页面
-            // CrawlText.getText(true, true,"http://wjj.xa.gov.cn/ptl/def/def//websac/cat/3108482.html");
-            // 下载附件
-            //downLoadFromUrl("http://wjj.xa.gov.cn/attached/file/20190301/1551426294668068449.rar","1551426294668068449.rar","D:\\filePath");
-            //System.out.println("success");
-
         }
         catch(Exception e)
         {
