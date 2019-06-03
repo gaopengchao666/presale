@@ -53,7 +53,7 @@ public class PreSaleServiceImpl implements PreSaleService
      */
     private void processAllPresale()
     {
-        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(20);
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(4);
         //查询分页
         int totalPage = getPreSalePage(url);
         if (totalPage == 0)
@@ -160,7 +160,7 @@ public class PreSaleServiceImpl implements PreSaleService
     public List<PreSale> getPreSales(String Url)
     {
         Document document = new CrawlText().getText(Url);
-        Elements trs = document.select(".ygsf_table1 tr:gt(0)");
+        Elements trs = document.select(".ygsf_table1 .ysztr");
         List<PreSale> presales = new ArrayList<PreSale>();
         for (Element tr : trs)
         {

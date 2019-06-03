@@ -1,14 +1,13 @@
 package cn.com.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import cn.com.entity.PreSale;
 
 /**
  * @author gaopengchao 2019年3月26日
@@ -23,11 +22,13 @@ public class Snippet
             /*Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/index");
             System.out.println(text);*/
             //查询第一个项目价格列表
-            Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/price?id=8a901c2869db98390169dbee41ef07f0");
-            System.out.println(text);
+            /*Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/price?id=8a901c2869db98390169dbee41ef07f0");
+            System.out.println(text);*/
             // 西安预售证查询
-            //List<PreSale> preSales = new CrawlText().getText("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
-            //System.out.println(preSales);
+            /*Document text = new CrawlText().getText("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
+            System.out.println(text);*/
+            List<PreSale> preSales = getPreSales("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
+            System.out.println(preSales);
         }
         catch(Exception e)
         {
@@ -36,73 +37,29 @@ public class Snippet
         }
     }
 
-    /**
-     * 从网络Url中下载文件
-     * 
-     * @param urlStr
-     * @param fileName
-     * @param savePath
-     * @throws IOException
-     */
-    public static String downLoadFromUrl(String urlStr, String fileName, String savePath)
+    public static List<PreSale> getPreSales(String Url)
     {
-        try
+        Document document = new CrawlText().getText(Url);
+        Elements trs = document.select(".ygsf_table1 .ysztr");
+        List<PreSale> presales = new ArrayList<PreSale>();
+        for (Element tr : trs)
         {
-            URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            // 设置超时间为3秒
-            conn.setConnectTimeout(3 * 1000);
-            // 防止屏蔽程序抓取而返回403错误
-            conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-            // 得到输入流
-            InputStream inputStream = conn.getInputStream();
-            // 获取自己数组
-            byte[] getData = readInputStream(inputStream);
-
-            // 文件保存位置
-            File saveDir = new File(savePath);
-            if (!saveDir.exists())
+            PreSale presale = new PreSale();
+            Elements tds = tr.select("td");
+            if (tds.get(0).select("a").size() > 0)
             {
-                saveDir.mkdir();
+                presale.setCertificate(tds.get(0).select("a").html());
             }
-            File file = new File(saveDir + File.separator + fileName);
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(getData);
-            if (fos != null)
+            if (tds.get(1).select("a").size() > 0)
             {
-                fos.close();
+                presale.setProjectName(tds.get(1).select("a").html());
             }
-            if (inputStream != null)
-            {
-                inputStream.close();
-            }
-            return saveDir + File.separator + fileName;
+            presale.setLocation(tds.get(2).html());
+            presale.setDeveloper(tds.get(3).html());
+            presale.setSaleable(tds.get(4).html());
+            presale.setCreateTime(tds.get(5).html());
+            presales.add(presale);
         }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        return "";
-
-    }
-
-    /**
-     * 从输入流中获取字节数组
-     * 
-     * @param inputStream
-     * @return
-     * @throws IOException
-     */
-    public static byte[] readInputStream(InputStream inputStream) throws IOException
-    {
-        byte[] buffer = new byte[1024];
-        int len = 0;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        while ((len = inputStream.read(buffer)) != -1)
-        {
-            bos.write(buffer, 0, len);
-        }
-        bos.close();
-        return bos.toByteArray();
+        return presales;
     }
 }
