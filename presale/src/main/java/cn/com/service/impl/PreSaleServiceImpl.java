@@ -1,6 +1,5 @@
 package cn.com.service.impl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -18,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.com.dao.PreSaleMapper;
 import cn.com.entity.PreSale;
 import cn.com.service.PreSaleService;
+import cn.com.service.ProjectService;
 import cn.com.util.CrawlText;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,9 +29,13 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class PreSaleServiceImpl implements PreSaleService
 {
+    //预售url
     private String url = "http://fgj.xa.gov.cn/ygsf/index.aspx";
     @Resource
     private PreSaleMapper preSaleMapper;
+    
+    @Resource
+    private ProjectService projectService;
     
     @Override
     public List<PreSale> queryPreSales()
@@ -46,6 +50,7 @@ public class PreSaleServiceImpl implements PreSaleService
     public void timeToQueryData()
     {
         processAllPresale();
+        projectService.processAllProject();
     }
     
     /**
@@ -147,15 +152,8 @@ public class PreSaleServiceImpl implements PreSaleService
     }
     
     /***
-     * 获取文本
+     * 根据给定url获取所有的预售信息
      * 
-     * @param autoDownloadFile
-     *            自动下载文件
-     * @param Multithreading
-     *            多线程 默认false
-     * @param Url
-     *            网站链接
-     * @throws IOException
      */
     public List<PreSale> getPreSales(String Url)
     {

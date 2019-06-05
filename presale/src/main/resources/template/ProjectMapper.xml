@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="cn.com.dao.ProjectMapper">
+	 
+     <resultMap type="cn.com.entity.Project" id="ProjectMap">  
+        <id property="id" column="ID" />  
+        <result property="batch" column="BATCH" />  
+        <result property="projectName" column="PROJECT_NAME" />
+        <result property="saleable" column="SALEABLE" />
+        <result property="floors" column="FLOORS" />
+        <result property="address"  column="ADDRESS"/>
+        <result property="decoration"  column="DECORATION"/>
+        <result property="priceUrl"  column="PRICE_URL"/>
+    </resultMap>
+     
+    <insert id="insertPreSales" parameterType="List" useGeneratedKeys="true" keyProperty="id">
+        insert into tbl_project (BATCH,PROJECT_NAME,SALEABLE,
+                    FLOORS,ADDRESS,DECORATION,PRICE_URL)
+        values 
+        <foreach collection="list" item="item" separator=",">
+            (#{item.batch},#{item.projectName},#{item.saleable},
+            #{item.floors},#{item.address},#{item.decoration},#{item.priceUrl})
+        </foreach>
+    </insert>
+     
+    <select id="queryProject" resultMap="ProjectMap" parameterType="String">
+        select 
+            ID,BATCH,PROJECT_NAME,
+            SALEABLE,FLOORS,ADDRESS,DECORATION,PRICE_URL
+        from tbl_project
+        where PRICE_URL = #{_parameter}
+    </select>
+    
+    <select id="queryProjectCount" resultType="int">
+        select count(1) from tbl_project
+    </select>
+</mapper>

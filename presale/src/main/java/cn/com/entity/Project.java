@@ -1,5 +1,7 @@
 package cn.com.entity;
 
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -18,4 +20,5 @@ public class Project
     private String address;//地址
     private String decoration;//装修情况
     private String priceUrl;//项目价格url
+    private List<Price> prices;//项目中所有的价格
 }
