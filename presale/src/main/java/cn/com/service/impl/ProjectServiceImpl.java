@@ -152,6 +152,10 @@ public class ProjectServiceImpl implements ProjectService
             param.put("size", "10000");
             //项目所有价格
             Document priceDocument = new CrawlText().getText(baseUrl +"price?id=" + priceUrl,param);
+            //项目其他基本信息
+            Elements projectOther = priceDocument.select(".formTable span");
+            project.setDecoration(projectOther.get(1).html());
+            project.setAddress(projectOther.get(2).html());
             Elements priceTrs = priceDocument.select(".listTable>tbody>tr");
             List<Price> prices = new ArrayList<Price>();
             for (Element priceTr : priceTrs)

@@ -63,14 +63,14 @@ public class PreSaleServiceImpl implements PreSaleService
         int totalPage = getPreSalePage(url);
         if (totalPage == 0)
         {
-            log.error("没有查询到分页信息...");
+            log.error("预售证没有查询到分页信息...");
             return;
         }
         //最大预售证号
         String maxCertificate = preSaleMapper.queryMaxCertificate();
         if (! maxCertificate.equals("0"))
         {
-            log.info("全量更新结束，开始增量更新...");
+            log.info("预售证全量更新结束，开始增量更新...");
             processUpdatePresale(maxCertificate);
             return;
         }
@@ -92,7 +92,7 @@ public class PreSaleServiceImpl implements PreSaleService
         int totalPage = getPreSalePage(url);
         if (totalPage == 0)
         {
-            log.error("没有查询到分页信息...");
+            log.error("预售证没有查询到分页信息...");
             return;
         }
         
@@ -134,7 +134,7 @@ public class PreSaleServiceImpl implements PreSaleService
                 i += MAX_SIZE;
             }
         }
-        log.info("采集到数据集合大小为：" + preSales.size());
+        log.info("预售证采集到数据集合大小为：" + preSales.size());
     }
     
     /**
