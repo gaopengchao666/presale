@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ProjectServiceImpl implements ProjectService
 {
-    // 查询批次所有项目 项目所有价格详情 baseUrl
+    // 查询批次所有项目 项目所有价格详情 baseUrl  
     //&decbatchId=8a901c286a0163fd016a10bed2541e3d&page=1&size=15"
     private String baseUrl = "http://117.39.29.75:8085/pricePublic/house/public/";
     
@@ -68,11 +68,12 @@ public class ProjectServiceImpl implements ProjectService
             Project existProject = projectMapper.queryProject(projectId);
             if (existProject != null)
             {
+                log.info("项目增量更新没有新数据--------------------" + projectId);
                 return;
             }
         }
         
-        log.info("项目增量更新--------------------start");
+        /*log.info("项目增量更新--------------------start");
         //增加更新
         for (Element batchOption : batchOptions)
         {
@@ -80,7 +81,7 @@ public class ProjectServiceImpl implements ProjectService
             List<Project> projects = getAllProjects(batchOption.val(),false);
             log.info("批次号：" + batchOption.val() + "添加项目:" + projects.size());
             addProjects(projects);
-        }
+        }*/
     }
 
     /**
@@ -102,7 +103,7 @@ public class ProjectServiceImpl implements ProjectService
                     prices.add(price);
                 }
             }
-            priceMapper.insertProces(prices);//添加价格
+            priceMapper.insertPrices(prices);//添加价格
         }
     }
 
@@ -114,6 +115,7 @@ public class ProjectServiceImpl implements ProjectService
     @Override
     public List<Project> getAllProjects(String decbatchId,boolean isFull)
     {
+        log.info("开始处理批次号：" + decbatchId);
         List<Project> projects = new ArrayList<Project>();
         
         Map<String,String> params = new HashMap<String,String>();
@@ -124,7 +126,7 @@ public class ProjectServiceImpl implements ProjectService
         Document document = new CrawlText().getText(baseUrl + "index",params);
         Elements projectTrs = document.select(".listTable>tbody>tr");
         
-        for (Element projectTr : projectTrs.subList(0, 1))
+        for (Element projectTr : projectTrs)
         {
             Project project = new Project();
             Elements fields = projectTr.select("td");
@@ -149,7 +151,7 @@ public class ProjectServiceImpl implements ProjectService
             param.put("page", "1");
             param.put("size", "10000");
             //项目所有价格
-            Document priceDocument = new CrawlText().getText(baseUrl +"?id=" + priceUrl,param);
+            Document priceDocument = new CrawlText().getText(baseUrl +"price?id=" + priceUrl,param);
             Elements priceTrs = priceDocument.select(".listTable>tbody>tr");
             List<Price> prices = new ArrayList<Price>();
             for (Element priceTr : priceTrs)
@@ -166,6 +168,7 @@ public class ProjectServiceImpl implements ProjectService
             project.setPrices(prices);
             projects.add(project);
         }
+        log.info("处理批次号结束项目有：" + projects.size());
         return projects;
     }
     

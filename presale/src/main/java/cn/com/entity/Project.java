@@ -19,6 +19,6 @@ public class Project
     private String floors;//总层数 32,32
     private String address;//地址
     private String decoration;//装修情况
-    private String priceUrl;//项目价格url
+    private String priceUrl;//项目价格url  业务侧项目id
     private List<Price> prices;//项目中所有的价格
 }

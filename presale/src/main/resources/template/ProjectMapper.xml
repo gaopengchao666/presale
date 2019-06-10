@@ -13,7 +13,7 @@
         <result property="priceUrl"  column="PRICE_URL"/>
     </resultMap>
      
-    <insert id="insertPreSales" parameterType="List" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertProjects" parameterType="List" useGeneratedKeys="true" keyProperty="id">
         insert into tbl_project (BATCH,PROJECT_NAME,SALEABLE,
                     FLOORS,ADDRESS,DECORATION,PRICE_URL)
         values 
@@ -28,7 +28,7 @@
             ID,BATCH,PROJECT_NAME,
             SALEABLE,FLOORS,ADDRESS,DECORATION,PRICE_URL
         from tbl_project
-        where PRICE_URL = #{_parameter}
+        where PRICE_URL = #{_parameter} limit 1
     </select>
     
     <select id="queryProjectCount" resultType="int">

@@ -14,6 +14,6 @@ public interface PriceMapper
     /**
      * 添加价格信息
      */
-    void insertProces(List<Price> prices);
+    void insertPrices(List<Price> prices);
     
 }
