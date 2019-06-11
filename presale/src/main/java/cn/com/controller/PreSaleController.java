@@ -36,6 +36,6 @@ public class PreSaleController
     {
         List<PreSale> preSales = preSaleService.queryPreSales();
         model.addAttribute("preSales", preSales);
-        return "welcome";
+        return "index";
     }
 }

@@ -34,4 +34,25 @@
     <select id="queryProjectCount" resultType="int">
         select count(1) from tbl_project
     </select>
+    
+    <select id="queryProjects" parameterType="map" resultMap="ProjectMap">
+        select 
+            ID,BATCH,PROJECT_NAME,
+            SALEABLE,FLOORS,ADDRESS,DECORATION,PRICE_URL
+        from tbl_project
+        <where>
+            <if test="batch != null and batch != ''">
+                and BATCH like '%${batch}%'
+            </if>
+            <if test="projectName != null and projectName != ''">
+                and PROJECT_NAME like '%${projectName}%'
+            </if>
+            <if test="address != null and address != ''">
+                and ADDRESS like '%${address}%'
+            </if>
+            <if test="decoration != null and decoration != ''">
+                and DECORATION = #{decoration}
+            </if>
+        </where>
+    </select>
 </mapper>

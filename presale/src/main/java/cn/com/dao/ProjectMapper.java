@@ -1,6 +1,7 @@
 package cn.com.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.com.entity.Project;
 
@@ -27,4 +28,8 @@ public interface ProjectMapper
      * 添加所有项目
      */
     void insertProjects(List<Project> projects);
+
+    /**
+     */
+    List<Project> queryProjects(Map<String, Object> params);
 }

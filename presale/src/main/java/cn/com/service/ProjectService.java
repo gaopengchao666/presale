@@ -1,6 +1,7 @@
 package cn.com.service;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.com.entity.Project;
 
@@ -30,4 +31,10 @@ public interface ProjectService
      * @param projects
      */
     void addProjects(List<Project> projects);
+
+    /**
+     * @param params
+     * @return
+     */
+    public List<Project> queryProjects(Map<String, Object> params);
 }

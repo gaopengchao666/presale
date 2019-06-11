@@ -185,5 +185,11 @@ public class ProjectServiceImpl implements ProjectService
         
     }
 
+    @Override
+    public List<Project> queryProjects(Map<String, Object> params)
+    {
+        return projectMapper.queryProjects(params);
+    }
+
 
 }

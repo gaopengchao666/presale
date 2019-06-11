@@ -1,4 +1,4 @@
-cron: 0/10 * * * * ? 
+cron: 0 0 * * * ? 
 mybatis: 
     mapper-locations: classpath:template/*.xml
     typeAliasesPackage: cn.com.entity
