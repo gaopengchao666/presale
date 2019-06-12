@@ -23,7 +23,7 @@ public class Page
 
     private static ObjectMapper mapper = new ObjectMapper();
 
-    public static String DEFAULT_PAGESIZE = "10";
+    public static String DEFAULT_PAGESIZE = "20";
     
     private int IsGetCount = 1;//是否获取总记录数
 

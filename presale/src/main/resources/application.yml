@@ -2,7 +2,7 @@ cron: 0 0 * * * ?
 mybatis: 
     mapper-locations: classpath:template/*.xml
     typeAliasesPackage: cn.com.entity
-
+    config-location: classpath:mybatis-config.xml
 spring: 
     datasource: 
         url: jdbc:mysql://localhost:3306/presale?autoReconnect=true&useUnicode=yes&amp;characterEncoding=UTF8&allowMultiQueries=true&useSSL=false
