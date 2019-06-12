@@ -30,18 +30,17 @@
             </div>
             <div class="padding border-bottom">
                 <ul class="search" style="padding-left: 10px;">
-                    <li>搜索：</li>
-                    <li>批次号<input type="text" placeholder="请输入批次号" name="batch" class="input"
-                        style="width: 250px; line-height: 17px; display: inline-block" /> &nbsp;&nbsp; 项目<input
+                    <li>批次号：<input type="text" placeholder="请输入批次号" name="batch" class="input"
+                        style="width: 250px; line-height: 17px; display: inline-block" /> &nbsp;&nbsp; 项目：<input
                         type="text" placeholder="请输入项目" name="projectName" class="input"
-                        style="width: 250px; line-height: 17px; display: inline-block" />&nbsp;&nbsp; 装修<select
+                        style="width: 250px; line-height: 17px; display: inline-block" />&nbsp;&nbsp; 装修：<select
                         name="decoration" class="input" style="width: 60px; line-height: 17px; display: inline-block">
                             <option value="">选择</option>
                             <option value="毛坯">毛坯</option>
                             <option value="精装">精装</option>
                     </select>
                     </li>
-                    <li>地址<input type="text" placeholder="请输入搜索地址" name="address" class="input"
+                    <li>地址：<input type="text" placeholder="请输入搜索地址" name="address" class="input"
                         style="width: 250px; line-height: 17px; display: inline-block" /> <a href="javascript:void(0)"
                         class="button border-main icon-search"> 搜索</a></li>
                 </ul>
