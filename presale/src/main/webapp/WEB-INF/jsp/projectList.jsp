@@ -32,18 +32,18 @@
                 <ul class="search" style="padding-left: 10px;">
                     <li>搜索：</li>
                     <li>批次号<input type="text" placeholder="请输入批次号" name="batch" class="input"
-                        style="width: 250px; line-height: 17px; display: inline-block" /> &nbsp;&nbsp; 
-                                                            项目 <input type="text" placeholder="请输入项目" name="projectName" class="input"
-                        style="width: 250px; line-height: 17px; display: inline-block" />&nbsp;&nbsp; 
-                                                           装修情况 <select name="decoration" class="input" style="width: 60px; line-height: 17px; display: inline-block">
+                        style="width: 250px; line-height: 17px; display: inline-block" /> &nbsp;&nbsp; 项目<input
+                        type="text" placeholder="请输入项目" name="projectName" class="input"
+                        style="width: 250px; line-height: 17px; display: inline-block" />&nbsp;&nbsp; 装修<select
+                        name="decoration" class="input" style="width: 60px; line-height: 17px; display: inline-block">
                             <option value="">选择</option>
                             <option value="毛坯">毛坯</option>
                             <option value="精装">精装</option>
                     </select>
                     </li>
-                    <li><input type="text" placeholder="请输入搜索地址" name="address" class="input"
-                        style="width: 250px; line-height: 17px; display: inline-block" /> 
-                        <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()"> 搜索</a></li>
+                    <li>地址<input type="text" placeholder="请输入搜索地址" name="address" class="input"
+                        style="width: 250px; line-height: 17px; display: inline-block" /> <a href="javascript:void(0)"
+                        class="button border-main icon-search"> 搜索</a></li>
                 </ul>
             </div>
             <table class="table table-hover text-center">
@@ -55,18 +55,20 @@
                     <th>地址</th>
                     <th>装修情况</th>
                 </tr>
-                <volist name="list" id="vo" class="projectTbody">
-                </volist>
+                <tbody class="projectTbody">
+                </tbody>
                 <tr>
-                    <td colspan="8"><div class="pagelist">
+                    <td colspan="8">
+                        <div class="pagelist" id="pagelist">
                             <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a
                                 href="">尾页</a>
-                        </div></td>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </div>
     </form>
-<script id="projectTemp" type="text/html">
+    <script id="projectTemp" type="text/html">
 {{each list obj index}}
     <tr class='listTableText list_list'>
     <td><a class='cursor' href='price/queryPrices?projectId={{obj.id}}'>{{obj.projectName}}</a></td>
