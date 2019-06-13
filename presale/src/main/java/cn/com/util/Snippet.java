@@ -7,7 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import cn.com.entity.PreSale;
+import cn.com.entity.Presale;
 
 /**
  * @author gaopengchao 2019年3月26日
@@ -38,14 +38,14 @@ public class Snippet
         }
     }
 
-    public static List<PreSale> getPreSales(String Url)
+    public static List<Presale> getPreSales(String Url)
     {
         Document document = new CrawlText().getText(Url);
         Elements trs = document.select(".ygsf_table1 .ysztr");
-        List<PreSale> presales = new ArrayList<PreSale>();
+        List<Presale> presales = new ArrayList<Presale>();
         for (Element tr : trs)
         {
-            PreSale presale = new PreSale();
+            Presale presale = new Presale();
             Elements tds = tr.select("td");
             if (tds.get(0).select("a").size() > 0)
             {

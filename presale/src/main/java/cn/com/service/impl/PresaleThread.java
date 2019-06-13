@@ -2,8 +2,8 @@ package cn.com.service.impl;
 
 import java.util.List;
 
-import cn.com.entity.PreSale;
-import cn.com.service.PreSaleService;
+import cn.com.entity.Presale;
+import cn.com.service.PresaleService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -11,13 +11,13 @@ import lombok.extern.slf4j.Slf4j;
  * 2019年5月9日
  */
 @Slf4j
-public class PreSaleThread extends Thread
+public class PresaleThread extends Thread
 {
-    private PreSaleService preSaleService;
+    private PresaleService preSaleService;
     private String Url;
     private int page;
     
-    public PreSaleThread(int i,String url,PreSaleService service)
+    public PresaleThread(int i,String url,PresaleService service)
     {
         this.page = i;
         this.preSaleService = service;
@@ -28,8 +28,8 @@ public class PreSaleThread extends Thread
     public void run()
     {
         String urls = Url + "?page=" + page;
-        List<PreSale> sales = preSaleService.getPreSales(urls);
+        List<Presale> sales = preSaleService.getPresales(urls);
         log.info(Thread.currentThread().getName() + ":" + sales.toString());
-        preSaleService.insertPreSales(sales);
+        preSaleService.insertPresales(sales);
     }
 }

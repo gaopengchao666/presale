@@ -28,7 +28,7 @@
         </h2>
         <ul style="display: block">
             <li><a href="project/queryProjects" target="right"><span class="icon-caret-right"></span>近期房源</a></li>
-            <li><a href="pass.html" target="right"><span class="icon-caret-right"></span>预售证</a></li>
+            <li><a href="presale/queryPresales" target="right"><span class="icon-caret-right"></span>预售证</a></li>
         </ul>
     </div>
     <script type="text/javascript">

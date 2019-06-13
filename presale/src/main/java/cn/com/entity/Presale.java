@@ -7,7 +7,7 @@ import lombok.Data;
  * 2019年3月27日
  */
 @Data
-public class PreSale
+public class Presale
 {
     private int id;//自增主键
     private String certificate;//预售证号

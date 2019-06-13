@@ -2,6 +2,7 @@ package cn.com.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -14,9 +15,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.com.dao.PreSaleMapper;
-import cn.com.entity.PreSale;
-import cn.com.service.PreSaleService;
+import cn.com.dao.PresaleMapper;
+import cn.com.entity.Presale;
+import cn.com.service.PresaleService;
 import cn.com.service.ProjectService;
 import cn.com.util.CrawlText;
 import lombok.extern.slf4j.Slf4j;
@@ -27,20 +28,20 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class PreSaleServiceImpl implements PreSaleService
+public class PresaleServiceImpl implements PresaleService
 {
     //预售url
     private String url = "http://fgj.xa.gov.cn/ygsf/index.aspx";
     @Resource
-    private PreSaleMapper preSaleMapper;
+    private PresaleMapper preSaleMapper;
     
     @Resource
     private ProjectService projectService;
     
     @Override
-    public List<PreSale> queryPreSales()
+    public List<Presale> queryPresales(Map<String,Object> params)
     {
-        return preSaleMapper.queryPreSales();
+        return preSaleMapper.queryPresales(params);
     }
     
     /**
@@ -77,7 +78,7 @@ public class PreSaleServiceImpl implements PreSaleService
         //分20个线程采集数据
         for (int i = 1;i <= totalPage; i++)
         {
-            fixedThreadPool.execute(new PreSaleThread(i,url,this));
+            fixedThreadPool.execute(new PresaleThread(i,url,this));
         }
     }
 
@@ -88,7 +89,7 @@ public class PreSaleServiceImpl implements PreSaleService
     private void processUpdatePresale(String maxCertificate)
     {
         //查询分页
-        List<PreSale> preSales = new ArrayList<PreSale>();
+        List<Presale> preSales = new ArrayList<Presale>();
         int totalPage = getPreSalePage(url);
         if (totalPage == 0)
         {
@@ -106,9 +107,9 @@ public class PreSaleServiceImpl implements PreSaleService
                 break;
             }
             String urls = url + "?page=" + i;
-            List<PreSale> sales = getPreSales(urls);
+            List<Presale> sales = getPresales(urls);
             log.info(sales.toString());
-            for (PreSale presale : sales)
+            for (Presale presale : sales)
             {
                 if (presale.getCertificate().compareTo(maxCertificate) > 0)
                 {
@@ -130,7 +131,7 @@ public class PreSaleServiceImpl implements PreSaleService
             {
                 // 最后一次 数组集合分割大小
                 int length = (size - i) < MAX_SIZE ? size : subLength + i;
-                preSaleMapper.insertPreSales(preSales.subList(i, length));
+                preSaleMapper.insertPresales(preSales.subList(i, length));
                 i += MAX_SIZE;
             }
         }
@@ -155,14 +156,14 @@ public class PreSaleServiceImpl implements PreSaleService
      * 根据给定url获取所有的预售信息
      * 
      */
-    public List<PreSale> getPreSales(String Url)
+    public List<Presale> getPresales(String Url)
     {
         Document document = new CrawlText().getText(Url);
         Elements trs = document.select(".ygsf_table1 .ysztr");
-        List<PreSale> presales = new ArrayList<PreSale>();
+        List<Presale> presales = new ArrayList<Presale>();
         for (Element tr : trs)
         {
-            PreSale presale = new PreSale();
+            Presale presale = new Presale();
             Elements tds = tr.select("td");
             if (tds.get(0).select("a").size() > 0)
             {
@@ -182,8 +183,8 @@ public class PreSaleServiceImpl implements PreSaleService
     }
 
     @Override
-    public void insertPreSales(List<PreSale> sales)
+    public void insertPresales(List<Presale> sales)
     {
-        preSaleMapper.insertPreSales(sales);
+        preSaleMapper.insertPresales(sales);
     }
 }

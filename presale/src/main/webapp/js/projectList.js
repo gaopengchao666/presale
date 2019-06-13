@@ -12,20 +12,6 @@ window.ProjectList = (function($,module){
      * 绑定事件
      */
     function bindEvent(){
-        $(".icon-search").click(function(){
-            var pageId = $(this).parents(".admin-panel").find(".pagelist").attr("id");
-            var element = $(this).parents(".admin-panel").find(".search");
-            // 筛选数据获取
-            var paramData = CommonUtils.serializeToObject(element);
-            // 分页参数 增加筛选条件
-            jQuery.each(PageUtils._pageParamArr, function() {
-                if (this['element'] == pageId) {
-                    this['data'] = paramData;
-                }
-            });
-            // 分页跳转第一页
-            PageUtils.pageClick(1, pageId);
-        });
     }
     
     /**

@@ -30,29 +30,25 @@
         </div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left: 10px;">
-                <li>批次号：<input type="text" placeholder="请输入批次号" name="batch" class="input"
-                    style="width: 250px; line-height: 17px; display: inline-block" /> &nbsp;&nbsp; 预售证：<input
-                    type="text" placeholder="请输入预售证" name="presaleName" class="input"
-                    style="width: 250px; line-height: 17px; display: inline-block" />&nbsp;&nbsp; 装修：<select
-                    name="decoration" class="input" style="width: 60px; line-height: 17px; display: inline-block">
-                        <option value="">选择</option>
-                        <option value="毛坯">毛坯</option>
-                        <option value="精装">精装</option>
-                </select>
+                <li>预售证号：<input type="text" placeholder="请输入预售证号" name="certificate" class="input"
+                    style="width: 150px; line-height: 17px; display: inline-block" /> &nbsp;&nbsp; 项目名称：<input
+                    type="text" placeholder="请输入项目名称" name="projectName" class="input"
+                    style="width: 150px; line-height: 17px; display: inline-block" />
                 </li>
-                <li>地址：<input type="text" placeholder="请输入搜索地址" name="address" class="input"
-                    style="width: 250px; line-height: 17px; display: inline-block" /> <a href="javascript:void(0)"
-                    class="button border-main icon-search"> 搜索</a></li>
+                <li> 
+                    <a href="javascript:void(0)" class="button border-main icon-search"> 搜索</a>
+                    <a href="javascript:void(0)" class="button border-main icon-clear"> 清除</a>
+                </li>
             </ul>
         </div>
         <table class="table table-hover text-center">
             <tr>
-                <th>预售证名称</th>
-                <th>批次号</th>
-                <th>可售楼栋</th>
-                <th width=15%>总高</th>
-                <th>地址</th>
-                <th width=10%>装修情况</th>
+                <th width=10%>预售证号</th>
+                <th width=20%>项目名称</th>
+                <th width=20%>位置</th>
+                <th width=20%>开发商</th>
+                <th width=20%>可售楼栋</th>
+                <th width=10%>发证日期</th>
             </tr>
             <tbody class="presaleTbody">
             </tbody>
@@ -66,12 +62,12 @@
 <script id="presaleTemp" type="text/html">
 {{each list obj index}}
     <tr class='listTableText list_list'>
-    <td><a class='cursor' onclick="presaleList.viewpresalePrices({{obj.id}})">{{obj.presaleName}}</a></td>
-    <td>{{obj.batch}}</td>
+    <td>{{obj.certificate}}</td>
+    <td>{{obj.projectName}}</td>
+    <td>{{obj.location}}</td>
+    <td>{{obj.developer}}</td>
     <td>{{obj.saleable}}</td>
-    <td>{{obj.floors}}</td>
-    <td>{{obj.address}}</td>
-    <td>{{obj.decoration}}</td>
+    <td>{{obj.createTime}}</td>
     </tr>
 {{/each}}
 </script>

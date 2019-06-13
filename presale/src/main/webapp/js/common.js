@@ -105,13 +105,58 @@ window.CommonUtils = (function(jQuery, module) {
             }
         });
     }
-
+    
+    /**
+     * 初始化函数
+     */
+    function init(){
+        bindEvent();
+    }
+    
+    /**
+     * 绑定事件
+     */
+    function bindEvent(){
+        $(".icon-search").click(function(){
+            var pageId = $(this).parents(".admin-panel").find(".pagelist").attr("id");
+            var element = $(this).parents(".admin-panel").find(".search");
+            // 筛选数据获取
+            var paramData = CommonUtils.serializeToObject(element);
+            // 分页参数 增加筛选条件
+            jQuery.each(PageUtils._pageParamArr, function() {
+                if (this['element'] == pageId) {
+                    this['data'] = paramData;
+                }
+            });
+            // 分页跳转第一页
+            PageUtils.pageClick(1, pageId);
+        });
+        $(".icon-clear").click(function(){
+            var pageId = $(this).parents(".admin-panel").find(".pagelist").attr("id");
+            var element = $(this).parents(".admin-panel").find(".search");
+            //清除筛选项
+            jQuery(element).find(":input").val("");
+            jQuery(element).find("select").prop('selectedIndex', 0);
+            // 分页参数 增加筛选条件
+            jQuery.each(PageUtils._pageParamArr, function() {
+                if (this['element'] == pageId) {
+                    this['data'] = "";
+                }
+            });
+            // 分页跳转第一页
+            PageUtils.pageClick(1, pageId);
+        });
+    }
 
     module.fillForm = fillForm;
     module.serializeToObject = serializeToObject;
     module.getAjaxData = getAjaxData;
+    module.init = init;
     return module;
 }(jQuery, window.CommonUtils || {}));
+$(function() {
+    CommonUtils.init();
+});
 
 window.PageUtils = (function(jQuery, module) {
     var _pageParamArr = [], // 分页参数数组,可以有多个分页情况

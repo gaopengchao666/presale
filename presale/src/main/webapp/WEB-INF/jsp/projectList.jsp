@@ -41,17 +41,19 @@
                 </select>
                 </li>
                 <li>地址：<input type="text" placeholder="请输入搜索地址" name="address" class="input"
-                    style="width: 250px; line-height: 17px; display: inline-block" /> <a href="javascript:void(0)"
-                    class="button border-main icon-search"> 搜索</a></li>
+                    style="width: 250px; line-height: 17px; display: inline-block" /> 
+                    <a href="javascript:void(0)" class="button border-main icon-search"> 搜索</a>
+                    <a href="javascript:void(0)" class="button border-main icon-clear"> 清除</a>
+                </li>
             </ul>
         </div>
         <table class="table table-hover text-center">
             <tr>
-                <th>项目名称</th>
-                <th>批次号</th>
-                <th>可售楼栋</th>
-                <th width=15%>总高</th>
-                <th>地址</th>
+                <th width=20%>项目名称</th>
+                <th width=20%>批次号</th>
+                <th width=20%>可售楼栋</th>
+                <th width=20%>总高</th>
+                <th width=10%>地址</th>
                 <th width=10%>装修情况</th>
             </tr>
             <tbody class="projectTbody">
@@ -75,9 +77,11 @@
                     type="text" placeholder="请输入房间号" name="roomNo" class="input"
                     style="width: 250px; line-height: 17px; display: inline-block" />
                 </li>
-                <li><a href="javascript:void(0)"
-                    class="button border-main icon-search"> 搜索</a></li>
-                <li><a class="button button-little bg-green" onclick="ProjectList.viewProject()"><span class="icon-power-off"></span>返回项目</a></li>
+                <li>
+                    <a href="javascript:void(0)" class="button border-main icon-search"> 搜索</a>
+                    <a href="javascript:void(0)" class="button border-main icon-clear"> 清除</a>
+                    <a class="button button-little bg-green" onclick="ProjectList.viewProject()"><span class="icon-power-off"></span>返回项目</a>
+                </li>
             </ul>
         </div>
         <table class="table table-hover text-center">
@@ -100,12 +104,12 @@
 <script id="projectTemp" type="text/html">
 {{each list obj index}}
     <tr class='listTableText list_list'>
-    <td><a class='cursor' onclick="ProjectList.viewProjectPrices({{obj.id}})">{{obj.projectName}}</a></td>
-    <td>{{obj.batch}}</td>
-    <td>{{obj.saleable}}</td>
-    <td>{{obj.floors}}</td>
-    <td>{{obj.address}}</td>
-    <td>{{obj.decoration}}</td>
+    <td title='{{obj.projectName}}'><a class='cursor' onclick="ProjectList.viewProjectPrices({{obj.id}})">{{obj.projectName}}</a></td>
+    <td title='{{obj.batch}}'>{{obj.batch}}</td>
+    <td title='{{obj.saleable}}'>{{obj.saleable}}</td>
+    <td title='{{obj.floors}}'>{{obj.floors}}</td>
+    <td title='{{obj.address}}'>{{obj.address}}</td>
+    <td title='{{obj.decoration}}'>{{obj.decoration}}</td>
     </tr>
 {{/each}}
 </script>
