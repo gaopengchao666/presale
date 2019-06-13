@@ -21,4 +21,15 @@
             #{item.area},#{item.unitPrice},#{item.totalPrice})
         </foreach>
     </insert>
+    
+    <select id="queryPriceList" parameterType="map" resultMap="PriceMap">
+        select ID,PROJECT_ID,SORT,ROOM_NO,AREA,UNIT_PRICE,TOTAL_PRICE
+        from tbl_price where PROJECT_ID = #{projectId}
+        <if test="sort != null and sort != ''">
+            and SORT = #{sort}
+        </if>
+        <if test="roomNo != null and roomNo != ''">
+            and ROOM_NO like '%${roomNo}%'
+        </if>
+    </select>
 </mapper>
