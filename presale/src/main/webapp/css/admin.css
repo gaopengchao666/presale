@@ -55,7 +55,7 @@ ul,li{ list-style-type:none;}
 .table td { vertical-align:middle;}
 .tip img{width:100px; height:100px;}
 .clear{ clear:both; overflow:hidden;}
-.pagelist {padding:10px 0; text-align:center;}
+.pagelist {padding:10px 0; text-align:center}
 .pagelist span,.pagelist a{ border-radius:3px; border:1px solid #dfdfdf;display:inline-block; padding:5px 12px;}
 .pagelist a{ margin:0 3px;}
 .pagelist span.current{ background:#09F; color:#FFF; border-color:#09F; margin:0 2px;}

@@ -151,49 +151,41 @@ window.PageUtils = (function(jQuery, module) {
         //分页列表
         var pageNoDisp = page['pageNoDisp'];
         var pageNoArr = pageNoDisp.split("|") || [];
-        
-        // 分页汇总记录数 页数 每页条数
-        var summaryHtml = "<div class='page_sum'>共<span class='page_number'>" + end + "</span>页&emsp;每页 "
-                + page.pageSize + " 条&emsp;共<span class='info_sum'> " + page.totalRecord + " </span>条记录</div>"
-
-        // 分页跳转html
-        var jumpPageHtml = "<div class='page_jump'><span>跳转到&emsp;第&nbsp;</span>"
-                + "<input type='text' value='"+current+"' onkeypress='if(event.keyCode==13){PageUtils.jumpPage(this)}'/><span>&nbsp;页&emsp;</span>" +
-                 "<button onclick='PageUtils.jumpPage(this)'>Go</button></div>";
 
         // 分页页码HTML外层
-        var pageNumberHtml = "<div class='page-pull-right async-page'>";
+        var pageNumberHtml = "<div>";
 
         
         var pageDom = "";
         if (current != 1 && end != 0) {
-            pageDom += "<button onclick='PageUtils.pageClick(1,this)'>首页</button>";
-            pageDom += "<button onclick='PageUtils.pageClick(" + (current - 1) + ",this)'><<</button>";
+            pageDom += "<a class='button' onclick='PageUtils.pageClick(1,this)'>首页</a>";
+            pageDom += "<a class='button' onclick='PageUtils.pageClick(" + (current - 1) + ",this)'><<</a>";
         } else {
-            pageDom += "<button>首页</button>";
-            pageDom += "<button><<</button>";
+            pageDom += "<a class='button'>首页</a>";
+            pageDom += "<a class='button'><<</a>";
         }
 
         jQuery.each(pageNoArr,function(i, index) {
             if (index == 0) {
                 pageDom += "<label style='margin-right:3px;font-size: 10px; width: 20px; text-align: center;'>•••</label>";
             } else if (index != current) {
-                pageDom += "<button onclick='PageUtils.pageClick(" + index + ",this)'>" + index
-                        + "</button>";
+                pageDom += "<a class='button' onclick='PageUtils.pageClick(" + index + ",this)'>" + index
+                        + "</a>";
             } else {
-                pageDom += "<button class='select_page'>" + index + "</button>";
+                pageDom += "<span class='current'>" + index + "</span>";
             }
         });
 
         if (current < end && end != 0) {
-            pageDom += "<button onclick='PageUtils.pageClick(" + (current + 1) + ",this)'>>></button>";
-            pageDom += "<button onclick='PageUtils.pageClick(" + end + ",this)'>尾页</button>";
+            pageDom += "<a class='button' onclick='PageUtils.pageClick(" + (current + 1) + ",this)'>>></a>";
+            pageDom += "<a class='button' onclick='PageUtils.pageClick(" + end + ",this)'>尾页</a>";
         } else {
-            pageDom += "<button>>></button>";
-            pageDom += "<button>尾页</button>";
+            pageDom += "<a class='button'>>></a>";
+            pageDom += "<a class='button'>尾页</a>";
         }
+        
         //分页HTML = 页数汇总 + 分页跳转 + 分页内容html
-        var pageHtml = summaryHtml + jumpPageHtml + pageNumberHtml + pageDom + "</div>";
+        var pageHtml = pageNumberHtml + pageDom + "</div>";
         _jQueryelement.append(pageHtml);
     }
 

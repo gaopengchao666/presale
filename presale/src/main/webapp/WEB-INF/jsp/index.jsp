@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="renderer" content="webkit">
-<title>后台管理中心</title>
+<title>商品房查询</title>
 <link rel="stylesheet" href="css/pintuer.css">
 <link rel="stylesheet" href="css/admin.css">
 <script src="js/jquery.js"></script>
@@ -15,7 +15,7 @@
     <div class="header bg-main">
         <div class="logo margin-big-left fadein-top">
             <h1>
-                <img src="images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />后台管理中心
+                <img src="images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />商品房查询
             </h1>
         </div>
     </div>
@@ -27,8 +27,8 @@
             <span class="icon-user"></span>统计查询
         </h2>
         <ul style="display: block">
-            <li><a href="project/queryProjects" target="right"><span class="icon-caret-right"></span>123</a></li>
-            <li><a href="pass.html" target="right"><span class="icon-caret-right"></span>456</a></li>
+            <li><a href="project/queryProjects" target="right"><span class="icon-caret-right"></span>近期房源</a></li>
+            <li><a href="pass.html" target="right"><span class="icon-caret-right"></span>预售证</a></li>
         </ul>
     </div>
     <script type="text/javascript">
@@ -46,7 +46,7 @@
     </script>
     <ul class="bread">
         <li><a href="{:U('Index/info')}" target="right" class="icon-home"> 首页</a></li>
-        <li><a href="##" id="a_leader_txt"></a></li>
+        <li><a href="##" id="a_leader_txt">近期房源</a></li>
     </ul>
     <div class="admin">
         <iframe scrolling="auto" rameborder="0" src="project/queryProjects" name="right" width="100%" height="100%"></iframe>

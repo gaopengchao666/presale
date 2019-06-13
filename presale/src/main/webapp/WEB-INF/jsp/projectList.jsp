@@ -50,9 +50,9 @@
                     <th>项目名称</th>
                     <th>批次号</th>
                     <th>可售楼栋</th>
-                    <th>总高</th>
+                    <th width=15%>总高</th>
                     <th>地址</th>
-                    <th>装修情况</th>
+                    <th width=10%>装修情况</th>
                 </tr>
                 <tbody class="projectTbody">
                 </tbody>
