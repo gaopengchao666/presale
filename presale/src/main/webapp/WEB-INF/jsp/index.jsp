@@ -27,7 +27,7 @@
             <span class="icon-user"></span>统计查询
         </h2>
         <ul style="display: block">
-            <li><a href="project/queryProjects" target="right"><span class="icon-caret-right"></span>近期房源</a></li>
+            <li><a href="project/queryProjects" target="right"><span class="icon-caret-right"></span>备案价格</a></li>
             <li><a href="presale/queryPresales" target="right"><span class="icon-caret-right"></span>预售证</a></li>
         </ul>
     </div>
@@ -46,7 +46,7 @@
     </script>
     <ul class="bread">
         <li><a href="{:U('Index/info')}" target="right" class="icon-home"> 首页</a></li>
-        <li><a href="##" id="a_leader_txt">近期房源</a></li>
+        <li><a href="##" id="a_leader_txt">备案价格</a></li>
     </ul>
     <div class="admin">
         <iframe scrolling="auto" rameborder="0" src="project/queryProjects" name="right" width="100%" height="100%"></iframe>

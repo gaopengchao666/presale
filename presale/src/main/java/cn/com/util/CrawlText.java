@@ -3,9 +3,12 @@ package cn.com.util;
 import java.io.IOException;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+@Slf4j
 public class CrawlText
 {
     /***
@@ -23,7 +26,7 @@ public class CrawlText
         }
         catch(IOException e)
         {
-            e.printStackTrace();
+            log.error("远程获取数据超时或报错url:" + Url + "详情：" + e.getStackTrace());
         }
         return document;
     }
