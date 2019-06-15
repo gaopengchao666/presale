@@ -27,7 +27,7 @@
             <span class="icon-user"></span>统计查询
         </h2>
         <ul style="display: block">
-            <li><a href="project/queryProjects" target="right"><span class="icon-caret-right"></span>备案价格</a></li>
+            <li><a href="project/queryProjects" target="right" class="on"><span class="icon-caret-right"></span>备案价格</a></li>
             <li><a href="presale/queryPresales" target="right"><span class="icon-caret-right"></span>预售证</a></li>
         </ul>
     </div>

@@ -80,7 +80,7 @@
                 <li>
                     <a href="javascript:void(0)" class="button border-main icon-search"> 搜索</a>
                     <a href="javascript:void(0)" class="button border-main icon-clear"> 清除</a>
-                    <a class="button button-little bg-green" onclick="ProjectList.viewProject()"><span class="icon-power-off"></span>返回项目</a>
+                    <a class="button button-little bg-green" onclick="ProjectList.viewProject()">返回项目</a>
                 </li>
             </ul>
         </div>

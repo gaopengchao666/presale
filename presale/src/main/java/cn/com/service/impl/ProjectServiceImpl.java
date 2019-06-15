@@ -73,7 +73,7 @@ public class ProjectServiceImpl implements ProjectService
             }
         }
         
-        /*log.info("项目增量更新--------------------start");
+        log.info("项目增量更新--------------------start");
         //增加更新
         for (Element batchOption : batchOptions)
         {
@@ -81,7 +81,7 @@ public class ProjectServiceImpl implements ProjectService
             List<Project> projects = getAllProjects(batchOption.val(),false);
             log.info("批次号：" + batchOption.val() + "添加项目:" + projects.size());
             addProjects(projects);
-        }*/
+        }
     }
 
     /**
