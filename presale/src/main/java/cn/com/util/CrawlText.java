@@ -45,7 +45,7 @@ public class CrawlText
         }
         catch(IOException e)
         {
-            e.printStackTrace();
+            log.error("远程获取数据超时或报错url:" + Url + "详情：" + e.getStackTrace());
         }
         return document;
     }
