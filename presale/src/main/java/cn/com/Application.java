@@ -7,8 +7,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@SpringBootApplication
 @MapperScan(basePackages = "cn.com.dao")
+@SpringBootApplication
 @EnableScheduling
 public class Application extends SpringBootServletInitializer
 {

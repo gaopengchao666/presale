@@ -14,29 +14,29 @@ import cn.com.entity.Presale;
  */
 public class Snippet
 {
-    public static void main(String[] args)
-    {
-        try
-        {
-            //查询第一页项目
-            Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/price?id=8a901c28669f73e80166c3d741915f7c&size=10000&page=1");
-            //Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/index");
-            System.out.println(text);
-            //查询第一个项目价格列表
-            /*Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/price?id=8a901c2869db98390169dbee41ef07f0");
-            System.out.println(text);*/
-            // 西安预售证查询
-            /*Document text = new CrawlText().getText("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
-            System.out.println(text);*/
-            //List<PreSale> text = getPreSales("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
-            System.out.println(text);
-        }
-        catch(Exception e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args)
+//    {
+//        try
+//        {
+//            //查询第一页项目
+//            Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/price?id=8a901c28669f73e80166c3d741915f7c&size=10000&page=1");
+//            //Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/index");
+//            System.out.println(text);
+//            //查询第一个项目价格列表
+//            /*Document text = new CrawlText().getText("http://117.39.29.75:8085/pricePublic/house/public/price?id=8a901c2869db98390169dbee41ef07f0");
+//            System.out.println(text);*/
+//            // 西安预售证查询
+//            /*Document text = new CrawlText().getText("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
+//            System.out.println(text);*/
+//            //List<PreSale> text = getPreSales("http://fgj.xa.gov.cn/ygsf/index.aspx?page=1");
+//            System.out.println(text);
+//        }
+//        catch(Exception e)
+//        {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//    }
 
     public static List<Presale> getPreSales(String Url)
     {
