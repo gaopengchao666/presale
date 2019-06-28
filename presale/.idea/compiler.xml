@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="presale" options="-extdirs D:\project\gitproject\presale\presale/src/main/webapp/lib" />
+      <module name="presale" options="" />
     </option>
   </component>
 </project>
